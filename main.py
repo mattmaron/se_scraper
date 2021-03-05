@@ -35,7 +35,7 @@ for x in results:
 ## insert data 
 counter=0
 
-### 2. While loops until we've gone through all the links
+### 2.  loops until we've gone through all the links
 print('begin phase 2')
 
 for x in range(2,100):
