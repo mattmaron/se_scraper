@@ -8,7 +8,7 @@ import gspread
 """
 get_apt_details - pulls details for each apartment
 """
-def get_apt_details(url):
+def get_apt_details(s,url):
     headers = {'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36',
         'content-type': 'application/json',
         'os': 'web',
@@ -21,7 +21,7 @@ def get_apt_details(url):
         'accept-language': 'en-US,en;q=0.9,la;q=0.8'}
 
     url = url
-    r = requests.get(url,headers=headers)
+    r = s.get(url,headers=headers)
     html=str(r.text)
     soup = BeautifulSoup(html, 'html.parser')
 
@@ -87,7 +87,7 @@ def get_apt_details(url):
 pull_listings - pulls listings from the search results page
 
 """
-def pull_listings(listings_url):
+def pull_listings(s,listings_url):
     headers = {'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36',
         'content-type': 'application/json',
         'os': 'web',
@@ -101,7 +101,7 @@ def pull_listings(listings_url):
 
     url = listings_url
     print(url)
-    r = requests.get(url,headers=headers)
+    r = s.get(url,headers=headers)
     print(r.status_code)
     html=str(r.text)
     soup = BeautifulSoup(html, 'html.parser')
@@ -126,7 +126,7 @@ def pull_listings(listings_url):
 generate_next_listings_results - generates the next url to pull listings results from 
 
 """
-def get_next_listings_results(listings_url):
+def get_next_listings_results(s,listings_url):
     headers = {'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36',
         'content-type': 'application/json',
         'os': 'web',
@@ -139,7 +139,7 @@ def get_next_listings_results(listings_url):
         'accept-language': 'en-US,en;q=0.9,la;q=0.8'}
 
     url = listings_url
-    r = requests.get(url,headers=headers)
+    r = s.get(url,headers=headers)
     html=str(r.text)
     soup = BeautifulSoup(html, 'html.parser')
 
